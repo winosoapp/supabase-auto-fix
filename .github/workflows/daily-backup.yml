@@ -1,0 +1,27 @@
+name: Daily Backup
+
+on:
+  schedule:
+    - cron: "0 3 * * *"   # cada día a las 03:00 UTC
+  workflow_dispatch:      # también puedes lanzarlo manualmente
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repo
+        uses: actions/checkout@v4
+
+      - name: Comprimir archivos clave
+        run: |
+          mkdir backup
+          cp fixSupabaseBan.js backup/
+          cp package.json backup/
+          zip -r backup.zip backup
+
+      - name: Guardar como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supabase-auto-fix-backup
+          path: backup.zip
