@@ -1,0 +1,13 @@
+{
+  "name": "supabase-auto-fix",
+  "version": "1.0.0",
+  "description": "Auto remove banned IP 18.223.74.85 from Supabase Network Restrictions",
+  "main": "fixSupabaseBan.js",
+  "type": "module",
+  "scripts": {
+    "start": "node fixSupabaseBan.js"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
+}
